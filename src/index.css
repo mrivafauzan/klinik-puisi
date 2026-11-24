@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --clinic-teal: #0d9488;
+    --clinic-teal-dark: #115e59;
+    --clinic-mint: #e8fbf4;
+    --clinic-sky: #e0f4ff;
+    --clinic-sun: #fef08a;
+    --clinic-coral: #fb7185;
+    --clinic-ink: #133b34;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: "Nunito", system-ui, -apple-system, sans-serif;
+    color: var(--clinic-ink);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #e8fbf4;
+    background-image: url("/assets/aistudio/bg.image_d609e2f3.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: var(--clinic-ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(232, 251, 244, 0.72) 0%,
+      rgba(224, 244, 255, 0.66) 50%,
+      rgba(254, 249, 231, 0.72) 100%
+    );
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: "Fredoka", system-ui, sans-serif;
+    text-wrap: balance;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 3px solid #f59e0b;
+    outline-offset: 2px;
+  }
+}
+
+.clinic-card {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(20, 184, 166, 0.18);
+  box-shadow: 0 12px 28px rgba(17, 94, 89, 0.1);
+}
+
+.btn-tactile {
+  transition: transform 0.14s ease, box-shadow 0.14s ease, background-color 0.14s ease;
+}
+
+.btn-tactile:active:not(:disabled) {
+  transform: translateY(2px);
+}
+
+@keyframes confettiDrop {
+  0% {
+    transform: translateY(-20px) rotate(0deg) scale(0.9);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) rotate(560deg) scale(1);
+    opacity: 0;
+  }
+}
+
+.confetti-piece {
+  position: fixed;
+  top: -16px;
+  width: 11px;
+  height: 16px;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 80;
+  animation: confettiDrop 2.2s cubic-bezier(0.2, 0.7, 0.4, 1) forwards;
+}
+
+@media (max-width: 760px) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .confetti-piece {
+    display: none !important;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  body {
+    background: #ffffff !important;
+    background-image: none !important;
+  }
+  body::before {
+    display: none !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .clinic-card {
+    background: #ffffff !important;
+    box-shadow: none !important;
+    border: 1px solid #cbd5e1 !important;
+    backdrop-filter: none !important;
+  }
+}

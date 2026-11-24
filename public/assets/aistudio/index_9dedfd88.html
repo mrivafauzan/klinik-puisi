@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eaf6f2">
+  <meta name="description" content="Klinik Puisi — pembelajaran interaktif Bahasa Indonesia kelas IV untuk menemukan maksud dan bukti dalam puisi.">
+  <title>Klinik Puisi | Operasi Bedah Puisi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Langsung ke konten utama</a>
+
+  <header class="topbar">
+    <a class="brand" href="#" data-go="home" aria-label="Klinik Puisi — kembali ke beranda">
+      <span class="brand-icon" aria-hidden="true">🩺</span>
+      <span>KLINIK <b>PUISI</b><small>Bahasa Indonesia • Kelas IV</small></span>
+    </a>
+    <div class="top-progress" aria-live="polite">
+      <span id="progress-label">Misi 0 dari 4</span>
+      <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0" id="progress-bar"><span id="progress-fill"></span></div>
+    </div>
+    <div class="top-user" aria-label="Profil dokter muda">
+      <button type="button" class="sound-btn" id="sound-toggle" aria-pressed="false" aria-label="Matikan efek suara" title="Efek suara aktif">🔊</button>
+      <!-- TAMBAHAN MUSIK: Tombol kontrol musik latar -->
+      <button type="button" class="sound-btn" id="music-toggle" aria-pressed="false" aria-label="Nyalakan musik latar" title="Musik latar mati">🎶</button>
+      <span aria-hidden="true">⭐</span><b id="star-count">0</b>
+      <span class="user-avatar" id="mini-avatar" aria-hidden="true">🧑‍⚕️</span>
+      <b id="mini-name">Dokter Muda</b>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- BERANDA -->
+    <section class="screen active" id="screen-home" aria-labelledby="home-title">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">🏥 SELAMAT DATANG DI KLINIK PUISI</span>
+          <h1 id="home-title" tabindex="-1">Ayo, jadi <em>dokter puisi!</em></h1>
+          <p class="hero-lead">Setiap puisi menyimpan petunjuk. Tugasmu adalah membacanya dengan teliti, bermain memeriksa kata, menemukan maksudnya, dan menunjukkan bukti dari baris puisi.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" id="home-primary-btn" data-go="register">Mulai pemeriksaan <span aria-hidden="true">→</span></button>
+            <button class="btn btn-soft" data-go="orientation">Lihat cara bermain</button>
+            <button class="btn btn-soft" id="home-result-btn" data-go="result" hidden>🏅 Lihat hasilmu</button>
+          </div>
+          <div class="hero-note"><span aria-hidden="true">🌱</span> Tidak harus sama dengan teman. Jawabanmu boleh berbeda, asalkan masuk akal dan didukung bukti dari puisi.</div>
+        </div>
+      </div>
+      <div class="mission-preview">
+        <div>
+          <span class="eyebrow">MISI HARI INI</span>
+          <h2>Operasi Bedah Puisi</h2>
+          <p>Kita akan memeriksa puisi <b>"Dahulu dan Kini"</b> karya Eva Y. Nukman.</p>
+        </div>
+        <div class="mission-steps">
+          <span>1. Cari kata petunjuk</span>
+          <span>2. Rontgen Dahulu &amp; Kini</span>
+          <span>3. Tulis diagnosis &amp; bukti</span>
+        </div>
+      </div>
+      <div class="footer-mini">Baca • Pahami • Temukan • Jelaskan</div>
+    </section>
+
+    <!-- REGISTRASI -->
+    <section class="screen narrow" id="screen-register" aria-labelledby="register-title">
+      <button class="back-link" data-go="home">← Kembali</button>
+      <div class="section-heading">
+        <span class="eyebrow">🪪 PENDAFTARAN</span>
+        <h1 id="register-title" tabindex="-1">Siapa nama dokter muda hari ini?</h1>
+        <p>Isi nama dan pilih karakter yang akan menemanimu selama pemeriksaan.</p>
+      </div>
+      <form class="panel register-panel" id="register-form" novalidate>
+        <label for="student-name">Nama dokter muda</label>
+        <input id="student-name" type="text" maxlength="24" placeholder="Tulis namamu di sini..." autocomplete="given-name" required>
+        <label id="avatar-label">Pilih teman pemeriksaan</label>
+        <div class="avatar-picker" id="avatar-picker" role="radiogroup" aria-labelledby="avatar-label">
+          <button type="button" class="avatar-choice selected" data-avatar="🧑‍⚕️" role="radio" aria-checked="true" aria-label="Dokter Putra"><span aria-hidden="true">🧑‍⚕️</span><small>Dokter Putra</small></button>
+          <button type="button" class="avatar-choice" data-avatar="👩‍⚕️" role="radio" aria-checked="false" aria-label="Dokter Putri"><span aria-hidden="true">👩‍⚕️</span><small>Dokter Putri</small></button>
+          <button type="button" class="avatar-choice" data-avatar="🕵️" role="radio" aria-checked="false" aria-label="Penyelidik"><span aria-hidden="true">🕵️</span><small>Penyelidik</small></button>
+          <button type="button" class="avatar-choice" data-avatar="🧑‍🎓" role="radio" aria-checked="false" aria-label="Pelajar"><span aria-hidden="true">🧑‍🎓</span><small>Pelajar</small></button>
+        </div>
+        <button class="btn btn-primary full" type="submit" id="save-profile">Masuk ke klinik →</button>
+        <p class="feedback" id="register-feedback" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <!-- ORIENTASI -->
+    <section class="screen" id="screen-orientation" aria-labelledby="orientation-title">
+      <button class="back-link" id="orientation-back" data-go="home">← Kembali</button>
+      <div class="section-heading">
+        <span class="eyebrow">📚 RUANG ORIENTASI</span>
+        <h1 id="orientation-title" tabindex="-1">Sebelum memeriksa, kenali dulu!</h1>
+        <p>Ingat tiga hal sederhana ini untuk membantu menemukan maksud puisi.</p>
+      </div>
+      <div class="concept-grid">
+        <article class="concept-card"><div class="concept-icon mint" aria-hidden="true">📝</div><h3>Puisi</h3><p>Karya sastra yang disusun dengan pilihan kata dan baris untuk menyampaikan gagasan, pengalaman, atau perasaan.</p></article>
+        <article class="concept-card"><div class="concept-icon peach" aria-hidden="true">📏</div><h3>Baris dan bait</h3><p><b>Baris</b> adalah satu larik dalam puisi. Beberapa baris yang berkumpul membentuk <b>bait</b>.</p></article>
+        <article class="concept-card"><div class="concept-icon lilac" aria-hidden="true">💡</div><h3>Maksud puisi</h3><p>Hal yang ingin disampaikan penulis melalui puisi. Kita dapat menemukannya dengan memeriksa petunjuk dalam teks.</p></article>
+      </div>
+      <div class="tip-panel"><span aria-hidden="true">🧠</span><div><b>Ingat langkah dokter puisi!</b><p>Cari kata petunjuk → hubungkan petunjuk dengan maksud → bandingkan keadaan dalam puisi → tuliskan diagnosis dengan bukti teks.</p></div></div>
+      <div class="center-action"><button class="btn btn-primary" id="orientation-next" data-go="register">Daftar sebagai dokter muda →</button></div>
+    </section>
+
+    <!-- PETA -->
+    <section class="screen" id="screen-map" aria-labelledby="map-title">
+      <div class="section-heading">
+        <span class="eyebrow">🗺️ PETA KLINIK</span>
+        <h1 id="map-title" tabindex="-1">Rute pemeriksaanmu</h1>
+        <p>Selesaikan setiap ruang secara berurutan. Setiap misi berisi permainan pemeriksaan yang membantumu memahami puisi.</p>
+      </div>
+      <div class="route-grid">
+        <button class="route-card" data-go="orientation"><span class="route-number">01</span><span class="route-emoji" aria-hidden="true">📚</span><b>Ruang Orientasi</b><small>Kenali puisi dan maksudnya</small><span class="route-status" id="status-orientation">Materi pengantar</span></button>
+        <button class="route-card" id="route-lab" data-go="lab"><span class="route-number">02</span><span class="route-emoji" aria-hidden="true">🔎</span><b>Laboratorium Petunjuk</b><small>Game Kaca Pembesar Kata Kunci</small><span class="route-status" id="status-lab">Belum diperiksa</span></button>
+        <button class="route-card" id="route-simulation" data-go="simulation"><span class="route-number">03</span><span class="route-emoji" aria-hidden="true">🧩</span><b>Simulasi Pemeriksaan</b><small>Game Racik Resep Makna</small><span class="route-status" id="status-simulation">Belum diperiksa</span></button>
+        <button class="route-card" id="route-operation" data-go="operation"><span class="route-number">04</span><span class="route-emoji" aria-hidden="true">🩻</span><b>Operasi Bedah Puisi</b><small>Rontgen "Dahulu dan Kini"</small><span class="route-status" id="status-operation">Belum diperiksa</span></button>
+        <button class="route-card" id="route-diagnosis" data-go="diagnosis"><span class="route-number">05</span><span class="route-emoji" aria-hidden="true">📋</span><b>Ruang Diagnosis</b><small>Tulis hasil &amp; uji Meteran Bukti</small><span class="route-status" id="status-diagnosis">Belum diperiksa</span></button>
+        <button class="route-card final-route" id="route-result" data-go="result"><span class="route-number">★</span><span class="route-emoji" aria-hidden="true">🏅</span><b>Hasil Pemeriksaan</b><small>Lencana, refleksi, &amp; laporan</small><span class="route-status" id="status-result">Menunggu</span></button>
+      </div>
+      <div class="center-action"><button class="btn btn-soft" id="reset-progress">↻ Mulai ulang pemeriksaan</button></div>
+    </section>
+
+    <!-- LABORATORIUM: GAME KACA PEMBESAR KATA KUNCI -->
+    <section class="screen" id="screen-lab" aria-labelledby="lab-title">
+      <button class="back-link" data-go="map">← Ke peta klinik</button>
+      <div class="section-heading">
+        <span class="eyebrow" id="lab-eyebrow">🔎 MISI 1 • KACA PEMBESAR (RONDE 1 DARI 2)</span>
+        <h1 id="lab-title" tabindex="-1">Temukan kata kunci petunjuk!</h1>
+        <p>Ketuk bagian teks puisi yang paling membantu kita memahami <b>pesan atau perubahan keadaan</b> dalam puisi.</p>
+      </div>
+      <div class="panel">
+        <div class="lab-toolbar">
+          <span class="mini-label">PUISI LATIHAN: <b id="lab-poem-title">Pohon di Halaman</b></span>
+          <span class="clue-pill" id="lab-found-count">Petunjuk ditemukan: 0 / 2</span>
+        </div>
+        <div class="magnifier-board" id="lab-poem-interactive" role="group" aria-label="Pilih frasa kata kunci pada puisi"></div>
+        <p class="feedback" id="lab-feedback" role="status" aria-live="polite"></p>
+        <div class="explain-box" id="lab-explain" hidden>
+          <b>✨ Kesimpulan Kaca Pembesar</b>
+          <p id="lab-explain-body"></p>
+        </div>
+      </div>
+      <div class="center-action">
+        <button class="btn btn-primary" id="finish-lab" disabled>Lanjut ronde berikutnya →</button>
+      </div>
+    </section>
+
+    <!-- SIMULASI: GAME RACIK RESEP MAKNA -->
+    <section class="screen" id="screen-simulation" aria-labelledby="sim-title">
+      <button class="back-link" data-go="map">← Ke peta klinik</button>
+      <div class="section-heading">
+        <span class="eyebrow">🧩 MISI 2 • RACIK RESEP MAKNA</span>
+        <h1 id="sim-title" tabindex="-1">Pasangkan baris dengan maksudnya!</h1>
+        <p>Ketuk 1 <b>Kartu Petunjuk</b> di sebelah kiri, lalu ketuk <b>Kartu Maksud</b> yang cocok di sebelah kanan.</p>
+      </div>
+      <div class="panel">
+        <div class="match-status-bar">
+          <span class="clue-pill" id="sim-counter">Pasangan cocok: 0 / 3</span>
+          <span class="muted">Ketuk satu per satu untuk memasangkan</span>
+        </div>
+        <div class="match-grid">
+          <div class="match-col">
+            <h3>🔍 Kartu Petunjuk (Baris Puisi)</h3>
+            <div class="match-list" id="match-clues"></div>
+          </div>
+          <div class="match-col">
+            <h3>💡 Kartu Maksudnya</h3>
+            <div class="match-list" id="match-meanings"></div>
+          </div>
+        </div>
+        <p class="feedback" id="sim-feedback" role="status" aria-live="polite"></p>
+      </div>
+      <div class="tip-panel" style="margin-top: 1.2rem;"><span aria-hidden="true">⭐</span><div><b>Ingat cara dokter puisi!</b><p>Satu baris petunjuk selalu terhubung dengan gagasan atau maksud yang ingin disampaikan penulis.</p></div></div>
+      <div class="center-action"><button class="btn btn-primary" id="finish-simulation" disabled>Saya siap Rontgen puisi utama! →</button></div>
+    </section>
+
+    <!-- OPERASI: GAME RONTGEN DAHULU VS KINI -->
+    <section class="screen" id="screen-operation" aria-labelledby="operation-title">
+      <button class="back-link" data-go="map">← Ke peta klinik</button>
+      <div class="section-heading">
+        <span class="eyebrow">🩻 MISI 3 • RONTGEN BEDAH PUISI</span>
+        <h1 id="operation-title" tabindex="-1">Pindai keadaan Dahulu dan Kini!</h1>
+        <p>Pilih alat senter (<b>🟡 Dahulu</b> atau <b>🔵 Kini</b>), lalu ketuk baris puisi untuk memisahkan keadaan masa lalu kakek dan keadaan sekarang.</p>
+      </div>
+      <div class="operation-layout">
+        <article class="poem-sheet">
+          <div class="sheet-top">
+            <span>📖 BERKAS PASIEN PUISI • NO. 004</span>
+            <button type="button" class="btn-audio" id="read-poem-btn" aria-pressed="false">🔊 Dengarkan puisi</button>
+          </div>
+          <h2>Dahulu dan Kini</h2>
+          <p class="poem-author">Karya Eva Y. Nukman</p>
+
+          <div class="scanner-tools" role="group" aria-label="Pilih alat senter pemindai">
+            <button type="button" class="tool-btn past active" id="tool-past" aria-pressed="true">🟡 Senter Dahulu (Masa Lalu)</button>
+            <button type="button" class="tool-btn now" id="tool-now" aria-pressed="false">🔵 Senter Kini (Sekarang)</button>
+          </div>
+
+          <div class="poem-lines" id="poem-lines" role="group" aria-label="Baris puisi — ketuk untuk menandai Dahulu atau Kini">
+            <button type="button" class="poem-line" data-line="1"><span class="line-num">1</span><span class="line-text">Di sini dahulu ada lapangan,</span><span class="line-tag"></span></button>
+            <button type="button" class="poem-line" data-line="2"><span class="line-num">2</span><span class="line-text">tempat kami bermain layangan.</span><span class="line-tag"></span></button>
+            <button type="button" class="poem-line" data-line="3"><span class="line-num">3</span><span class="line-text">Layangan kami membubung ke angkasa,</span><span class="line-tag"></span></button>
+            <button type="button" class="poem-line" data-line="4"><span class="line-num">4</span><span class="line-text">melenggak-lenggok dengan cantiknya.</span><span class="line-tag"></span></button>
+            <span class="stanza-gap" aria-hidden="true"></span>
+            <button type="button" class="poem-line" data-line="5"><span class="line-num">5</span><span class="line-text">Di sungai itu dahulu kami mandi,</span><span class="line-tag"></span></button>
+            <button type="button" class="poem-line" data-line="6"><span class="line-num">6</span><span class="line-text">berenang setiap petang dan pagi,</span><span class="line-tag"></span></button>
+            <button type="button" class="poem-line" data-line="7"><span class="line-num">7</span><span class="line-text">tak peduli dingin memagut tulang.</span><span class="line-tag"></span></button>
+            <span class="stanza-gap" aria-hidden="true"></span>
+            <button type="button" class="poem-line" data-line="8"><span class="line-num">8</span><span class="line-text">Demikian kakekku bercerita</span><span class="line-tag"></span></button>
+            <button type="button" class="poem-line" data-line="9"><span class="line-num">9</span><span class="line-text">dan aku hanya dapat membayangkan</span><span class="line-tag"></span></button>
+            <button type="button" class="poem-line" data-line="10"><span class="line-num">10</span><span class="line-text">sambil menatap satu kompleks perumahan</span><span class="line-tag"></span></button>
+            <button type="button" class="poem-line" data-line="11"><span class="line-num">11</span><span class="line-text">dan sebuah kali kecil berair dangkal.</span><span class="line-tag"></span></button>
+          </div>
+          <div class="sheet-hint">💡 Tandai minimal <b>2 baris Dahulu</b> dan <b>2 baris Kini</b>. Ketuk ulang baris dengan senter yang sama untuk menghapus tanda.</div>
+        </article>
+
+        <aside class="operation-side">
+          <div class="question-card">
+            <span class="question-mark" aria-hidden="true">?</span>
+            <h3>Pertanyaan utama</h3>
+            <p>Mengapa tokoh dalam puisi hanya dapat membayangkan lapangan dan sungai yang diceritakan kakeknya?</p>
+          </div>
+
+          <div class="xray-card">
+            <h3>🩻 Hasil Rontgen Perbandingan</h3>
+            <div class="xray-columns">
+              <div class="xray-col past">
+                <b>🟡 Dahulu</b>
+                <div id="xray-past-list"><p class="muted">Belum ditandai</p></div>
+              </div>
+              <div class="xray-col now">
+                <b>🔵 Kini</b>
+                <div id="xray-now-list"><p class="muted">Belum ditandai</p></div>
+              </div>
+            </div>
+            <div class="xray-insight" id="xray-insight" hidden>
+              <b>💡 Penemuan Dokter Muda!</b>
+              <p>Lihat perbedaannya: tempat yang dulu luas dan bersih kini berubah! Gunakan bukti ini untuk menjawab Lembar Diagnosis.</p>
+            </div>
+          </div>
+
+          <button class="btn btn-primary full" id="confirm-clues" disabled>Lanjut ke Lembar Diagnosis →</button>
+          <p class="feedback" id="operation-feedback" role="status" aria-live="polite"></p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- DIAGNOSIS + METERAN BUKTI -->
+    <section class="screen narrow" id="screen-diagnosis" aria-labelledby="diagnosis-title">
+      <button class="back-link" data-go="map">← Ke peta klinik</button>
+      <div class="section-heading">
+        <span class="eyebrow">📋 LEMBAR DIAGNOSIS</span>
+        <h1 id="diagnosis-title" tabindex="-1">Tuliskan hasil pemeriksaanmu</h1>
+        <p>Gunakan hasil Rontgen dari Ruang Operasi. Jelaskan dengan kalimatmu sendiri.</p>
+      </div>
+
+      <div class="panel clues-reference">
+        <div class="clues-ref-head">
+          <b>🩻 Hasil Rontgenmu (Dahulu vs Kini):</b>
+          <a class="edit-clues-link" href="#" data-go="operation">Ubah hasil Rontgen</a>
+        </div>
+        <div class="xray-columns compact">
+          <div class="xray-col past">
+            <b>🟡 Dahulu</b>
+            <div id="diag-past-list"><p class="muted">—</p></div>
+          </div>
+          <div class="xray-col now">
+            <b>🔵 Kini</b>
+            <div id="diag-now-list"><p class="muted">—</p></div>
+          </div>
+        </div>
+        <div class="clues-ref-actions">
+          <button type="button" class="btn-chip" id="fill-clue-btn">📋 Salin semua ke No. 1</button>
+          <button type="button" class="btn-chip" id="fill-evidence-btn">📋 Salin baris Kini ke No. 3</button>
+        </div>
+      </div>
+
+      <div class="panel meter-panel" aria-live="polite">
+        <div class="meter-head">
+          <b>🩺 Meteran Bukti Dokter Muda</b>
+          <small>Lampu menyala otomatis saat jawabanmu makin kuat (jawaban tetap bebas sesuai pemikiranmu!)</small>
+        </div>
+        <div class="meter-lamps">
+          <div class="lamp" id="meter-clue"><span>💡</span><b>Petunjuk &amp; Bukti</b><small>Sebutkan baris puisi</small></div>
+          <div class="lamp" id="meter-reason"><span>💡</span><b>Alasan Perubahan</b><small>Pakai kata sebab/karena/berubah</small></div>
+          <div class="lamp" id="meter-complete"><span>💡</span><b>Penjelasan Utuh</b><small>Semua kotak terisi jelas</small></div>
+        </div>
+      </div>
+
+      <form class="panel diagnosis-form" id="diagnosis-form" novalidate>
+        <div class="form-intro">
+          <span aria-hidden="true">🧑‍⚕️</span>
+          <p><b>Dokter muda, kamu pasti bisa!</b><br>Jawabanmu boleh berbeda dengan teman, asalkan masuk akal dan didukung bukti dari teks. Ketikanmu tersimpan otomatis.</p>
+        </div>
+
+        <label for="answer-clue">1. Petunjuk apa yang kamu temukan dari hasil Rontgen?</label>
+        <textarea id="answer-clue" rows="2" placeholder="Tuliskan kata atau baris yang menjadi petunjuk..." required></textarea>
+
+        <label for="answer-meaning">2. Menurutmu, apa maksud yang ingin disampaikan melalui puisi "Dahulu dan Kini"?</label>
+        <div class="starter-row">
+          <button type="button" class="starter-chip" data-target="answer-meaning" data-text="Menurut saya, puisi ini ingin menyampaikan bahwa ">+ Pemantik: "Menurut saya, puisi ini ingin menyampaikan bahwa..."</button>
+        </div>
+        <textarea id="answer-meaning" rows="3" placeholder="Tuliskan pendapatmu dengan kalimat sendiri..." required></textarea>
+
+        <label for="answer-evidence">3. Baris mana yang menjadi bukti dari jawabanmu?</label>
+        <div class="starter-row">
+          <button type="button" class="starter-chip" data-target="answer-evidence" data-text="Baris yang menjadi bukti adalah ">+ Pemantik: "Baris yang menjadi bukti adalah..."</button>
+        </div>
+        <textarea id="answer-evidence" rows="2" placeholder="Tuliskan baris puisi yang mendukung jawabanmu..." required></textarea>
+
+        <label for="answer-reason">4. Mengapa kamu memilih baris tersebut?</label>
+        <div class="starter-row">
+          <button type="button" class="starter-chip" data-target="answer-reason" data-text="Saya memilih baris tersebut karena ">+ Pemantik: "Saya memilih baris tersebut karena..."</button>
+        </div>
+        <textarea id="answer-reason" rows="2" placeholder="Jelaskan alasanmu secara singkat..." required></textarea>
+
+        <button class="btn btn-primary full" type="submit">Kirim hasil diagnosis →</button>
+      </form>
+      <p class="feedback" id="diagnosis-feedback" role="status" aria-live="polite"></p>
+    </section>
+
+    <!-- HASIL -->
+    <section class="screen narrow" id="screen-result" aria-labelledby="result-title">
+      <div class="print-header">
+        <b>LAPORAN PEMERIKSAAN KLINIK PUISI (KELAS IV)</b>
+        <p>Puisi: "Dahulu dan Kini" karya Eva Y. Nukman • Dokter Muda: <span id="print-name">Dokter Muda</span> (<span id="print-stars">0</span> ⭐)</p>
+      </div>
+
+      <div class="result-hero">
+        <div class="trophy" aria-hidden="true">🏅</div>
+        <span class="eyebrow">HASIL PEMERIKSAAN</span>
+        <h1 id="result-title" tabindex="-1">Kerja bagus, <span id="result-name">Dokter Muda</span>!</h1>
+        <p>Kamu telah menyelesaikan seluruh permainan dan pemeriksaan puisi "Dahulu dan Kini".</p>
+        <div class="result-stars">⭐ <b id="result-stars">0</b> bintang terkumpul</div>
+        <div class="badge-rack" id="result-badges"></div>
+      </div>
+
+      <div class="panel result-summary">
+        <h2>🗂️ Ringkasan diagnosismu</h2>
+        <div class="summary-row"><b>Hasil Rontgen</b><p id="summary-selected"></p></div>
+        <div class="summary-row"><b>Petunjuk</b><p id="summary-clue"></p></div>
+        <div class="summary-row"><b>Maksud puisi</b><p id="summary-meaning"></p></div>
+        <div class="summary-row"><b>Bukti</b><p id="summary-evidence"></p></div>
+        <div class="summary-row"><b>Alasan</b><p id="summary-reason"></p></div>
+        <div class="summary-row"><b>Refleksi</b><p id="summary-reflection"></p></div>
+      </div>
+
+      <div class="reflection panel">
+        <h2>🌱 Refleksi dokter muda</h2>
+        <p>Apa hal paling penting yang kamu pelajari hari ini?</p>
+        <label class="sr-only" for="reflection-answer">Refleksi</label>
+        <textarea id="reflection-answer" rows="2" placeholder="Hari ini saya belajar bahwa..."></textarea>
+        <button class="btn btn-primary full" id="save-reflection">Simpan refleksi</button>
+        <p class="feedback" id="reflection-feedback" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="positive-note">💚 Setiap jawaban yang disertai alasan dan bukti menunjukkan bahwa kamu sudah berpikir dengan teliti. Teruslah membaca dan bertanya!</div>
+      <div class="center-action">
+        <button class="btn btn-soft" id="copy-result">📋 Salin hasil</button>
+        <button class="btn btn-soft" id="print-result">🖨️ Cetak hasil</button>
+        <button class="btn btn-soft" id="replay-button">🔁 Ulangi misi</button>
+        <button class="btn btn-primary" id="finish-button">Selesai ✓</button>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" id="bottom-nav" hidden aria-label="Navigasi cepat">
+    <button data-go="map">🗺️ <span>Peta Klinik</span></button>
+    <button data-go="operation">🩻 <span>Rontgen Puisi</span></button>
+    <button data-go="diagnosis">📋 <span>Diagnosis</span></button>
+  </nav>
+
+  <!-- MODAL KONFIRMASI KUSTOM -->
+  <div class="modal-backdrop" id="confirm-modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <div class="modal-emoji" aria-hidden="true">🩺</div>
+      <h2 id="modal-title">Ulangi pemeriksaan?</h2>
+      <p id="modal-message">Semua bintang dan jawabanmu akan dikosongkan agar bisa mulai dari awal lagi.</p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-soft" id="modal-cancel">Batal</button>
+        <button type="button" class="btn btn-primary" id="modal-confirm">Ya, ulangi</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- TAMBAHAN MUSIK: Elemen audio untuk musik latar -->
+  <audio id="bg-music" loop preload="none">
+    <source src="hospital-beeps.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
